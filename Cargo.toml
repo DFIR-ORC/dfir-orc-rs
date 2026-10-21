@@ -1,0 +1,34 @@
+[package]
+name = "dfir-orc"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Alpha Rust implementation of DFIR ORC, a framework to collect forensic artefacts on Windows"
+license = "LGPL-2.1-or-later"
+repository = "https://github.com/DFIR-ORC/dfir-orc-rs"
+readme = "README.md"
+keywords = ["dfir", "forensics", "incident-response", "windows", "artefact"]
+categories = ["command-line-utilities", "os::windows-apis"]
+
+include = ["src/**/*", "Cargo.toml", "Cargo.lock", "README.md", "LICENSE"]
+
+[dependencies]
+
+[package.metadata.docs.rs]
+# Windows-only tool: build the documentation for Windows targets.
+default-target = "x86_64-pc-windows-msvc"
+targets = ["x86_64-pc-windows-msvc", "i686-pc-windows-msvc"]
+
+[lints.rust]
+unsafe_op_in_unsafe_fn = "deny"
+
+[lints.clippy]
+undocumented_unsafe_blocks = "deny"
+unwrap_used = "warn"
+expect_used = "warn"
+indexing_slicing = "warn"   # Use .get() and handle None.
+
+[profile.release]
+overflow-checks = true
+lto = true
+codegen-units = 1

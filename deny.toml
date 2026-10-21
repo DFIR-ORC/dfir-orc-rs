@@ -1,0 +1,36 @@
+[graph]
+# Windows-only tool: check only the dependencies used on these targets.
+targets = ["x86_64-pc-windows-msvc", "i686-pc-windows-msvc"]
+
+[advisories]
+# Fail on known vulnerabilities (RustSec database) and on yanked crates.
+yanked = "deny"
+# Each ignored advisory must have a reason, e.g.
+# { id = "RUSTSEC-0000-0000", reason = "not reachable: ..." }
+ignore = []
+
+[licenses]
+# Each dependency must have a license from this list.
+allow = [
+    "MIT",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-3.0",
+    "Zlib",
+    "Apache-2.0",          # REMOVE if the project uses LGPL-2.1-only.
+    "LGPL-2.1-or-later",
+]
+confidence-threshold = 0.93
+
+[bans]
+multiple-versions = "warn"
+# Forbid "*" version requirements: they accept any future (possibly malicious) version.
+wildcards = "deny"
+
+[sources]
+# Supply chain: accept crates only from crates.io. No unknown registry, no git source.
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

@@ -1,0 +1,14 @@
+/target
+# Forensic output and evidence: never commit
+*.7z
+*.zip
+*.dmp
+*.raw
+*.vhdx
+*.E01
+/output/
+# Secrets
+.env
+*.pem
+*.key
+*.pfx
